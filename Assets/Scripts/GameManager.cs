@@ -8,8 +8,7 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-namespace Com.ECavadia.Archery
-{
+
     public class GameManager : MonoBehaviourPunCallbacks
     {
 
@@ -76,4 +75,4 @@ namespace Com.ECavadia.Archery
         
         #endregion
     }
-}
+
