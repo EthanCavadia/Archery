@@ -359,6 +359,7 @@
           <e p="PlayerManager.cs" t="Include" />
           <e p="PlayerNameInputField.cs" t="Include" />
           <e p="PlayerUI.cs" t="Include" />
+          <e p="SetCameraPosition.cs" t="Include" />
           <e p="ShootManager.cs" t="Include" />
         </e>
         <e p="TextMesh Pro" t="Include">

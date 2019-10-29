@@ -24,6 +24,11 @@ public class ShootManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
+    private void Start()
+    {
+        camera = Camera.main;
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -38,8 +43,7 @@ public class ShootManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 shotArrow = true;
 
-                GameObject go =
-                    PhotonNetwork.Instantiate(this.arrowPrefab.name, arrowSpawn.position, Quaternion.identity);
+                GameObject go = PhotonNetwork.Instantiate(this.arrowPrefab.name, arrowSpawn.position, Quaternion.identity);
                 Rigidbody rb = go.GetComponent<Rigidbody>();
 
                 rb.velocity = camera.transform.forward * shootForce;

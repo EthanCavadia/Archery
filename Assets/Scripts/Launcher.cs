@@ -86,6 +86,7 @@ public class Launcher : MonoBehaviourPunCallbacks
         if (!Cursor.visible)
         {
             Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 

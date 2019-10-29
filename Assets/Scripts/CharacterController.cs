@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using UnityEditor;
@@ -8,7 +9,14 @@ public class CharacterController : MonoBehaviourPun
 {
     public float speed;
 
-    public float height = 3f;
+    private void Awake()
+    {
+        if (!photonView.IsMine && GetComponent<CharacterController>() != null)
+        {
+            Destroy(GetComponent<CharacterController>());
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

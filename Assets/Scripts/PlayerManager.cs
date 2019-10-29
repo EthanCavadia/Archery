@@ -2,12 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Pun.Demo.PunBasics;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] public GameObject PlayerUiPrefab;
+    [SerializeField] public GameObject cameraPrefab;
     public float health = 1f;
     public static GameObject localPlayerInstance;
 
@@ -44,8 +46,10 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         SceneManager.sceneLoaded += OnSceneLoaded;
 
         GameObject _uiGo = Instantiate(PlayerUiPrefab);
-        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
         
+        Instantiate(cameraPrefab,transform.position + new Vector3(0,1.8f,0),Quaternion.identity);
+        
+        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
     }
     
     [PunRPC]
@@ -60,7 +64,9 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             return;
         }
-
+        
+        cameraPrefab.transform.position = gameObject.transform.position;
+        
         if (health <= 0f)
         {
             GameManager.Instance.LeaveRoom();

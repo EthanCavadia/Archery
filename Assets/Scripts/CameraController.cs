@@ -10,7 +10,7 @@ public class CameraController : MonoBehaviourPun
         MouseX = 1,
         MouseY = 2
     }
-
+    
     public RotationAxis axes = RotationAxis.MouseX;
 
     private float minimumVert = -45.0f;
@@ -21,13 +21,14 @@ public class CameraController : MonoBehaviourPun
 
     private float rotationX = 0;
 
+    private void Start()
+    {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
-        {
-            return;
-        }
         
         if (axes == RotationAxis.MouseX)
         {
