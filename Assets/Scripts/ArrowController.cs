@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ArrowController : MonoBehaviourPun
 {
+    [SerializeField] private PhotonView myPhotonView;
     private Rigidbody rigidbody;
 
     private float lifeTime = 2.0f;
@@ -14,13 +15,13 @@ public class ArrowController : MonoBehaviourPun
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
+        myPhotonView = GetComponent<PhotonView>();
         transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (!hit)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
@@ -35,7 +36,7 @@ public class ArrowController : MonoBehaviourPun
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (!photonView.IsMine)
+        if (!myPhotonView.IsMine)
         {
             return;
         }

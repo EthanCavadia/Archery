@@ -26,7 +26,7 @@ public class ShootManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Start()
     {
-        camera = Camera.main;
+        camera = GetComponentInChildren<Camera>();
     }
 
     // Update is called once per frame

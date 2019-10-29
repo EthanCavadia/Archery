@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviourPunCallbacks
 {
     public static GameManager Instance;
     public GameObject playerPrefab;
-    public Transform cameraPosition;
     private void Start()
     {
         Instance = this;

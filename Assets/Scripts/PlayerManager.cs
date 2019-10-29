@@ -9,10 +9,15 @@ using UnityEngine.SceneManagement;
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] public GameObject PlayerUiPrefab;
-    [SerializeField] public GameObject cameraPrefab;
+    [SerializeField] public PhotonView myPhotonView;
+    [SerializeField] public  Camera camera;
+    
     public float health = 1f;
     public static GameObject localPlayerInstance;
-
+        
+    private Vector3 originalCameraPosition;
+    private CharacterController characterController;
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -33,7 +38,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        if (photonView.IsMine)
+        if (myPhotonView.IsMine)
         {
             PlayerManager.localPlayerInstance = this.gameObject;
         }
@@ -42,13 +47,18 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     private void Start()
-    {
-        SceneManager.sceneLoaded += OnSceneLoaded;
+    {       
+        myPhotonView = GetComponent<PhotonView>();
+        camera = GetComponentInChildren<Camera>();
+        
+        if (!myPhotonView.IsMine)
+        {
+            camera.enabled = false;
+            return;
+        }
 
+        SceneManager.sceneLoaded += OnSceneLoaded;
         GameObject _uiGo = Instantiate(PlayerUiPrefab);
-        
-        Instantiate(cameraPrefab,transform.position + new Vector3(0,1.8f,0),Quaternion.identity);
-        
         _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
     }
     
@@ -60,16 +70,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Update()
     {
-        if (!photonView.IsMine)
+        if (myPhotonView.IsMine)
         {
-            return;
-        }
-        
-        cameraPrefab.transform.position = gameObject.transform.position;
-        
-        if (health <= 0f)
-        {
-            GameManager.Instance.LeaveRoom();
+            if (health <= 0f)
+            {
+                GameManager.Instance.LeaveRoom();
+            }
         }
     }
 

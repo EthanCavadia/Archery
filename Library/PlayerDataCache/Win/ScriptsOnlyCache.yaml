@@ -11,7 +11,6 @@ ScriptsOnlyBuild:
     - PlayerAnimatorManager
     - PlayerManager
     - PlayerUI
-    - SetCameraPosition
     - ShootManager
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
@@ -115,8 +114,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9870}
     - Class: 114
       Script: {instanceID: 9906}
-    - Class: 114
-      Script: {instanceID: 9934}
     - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
@@ -261,8 +258,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9870}
     - Class: 114
-      Script: {instanceID: 9934}
-    - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
       Script: {instanceID: 10222}
@@ -278,6 +273,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10720}
     - Class: 114
       Script: {instanceID: 10742}
+    - Class: 114
+      Script: {instanceID: 10858}
     - Class: 114
       Script: {instanceID: 10940}
     - Class: 114
@@ -359,8 +356,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 9780}
     - Class: 114
       Script: {instanceID: 9870}
-    - Class: 114
-      Script: {instanceID: 9934}
     - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
@@ -459,8 +454,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9870}
     - Class: 114
-      Script: {instanceID: 9934}
-    - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
       Script: {instanceID: 10222}
@@ -558,8 +551,6 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 9870}
     - Class: 114
-      Script: {instanceID: 9934}
-    - Class: 114
       Script: {instanceID: 9954}
     - Class: 114
       Script: {instanceID: 10222}
@@ -612,7 +603,7 @@ ScriptsOnlyBuild:
   scriptHashData:
   - hash:
       serializedVersion: 2
-      Hash: 1f159e33a66d421831e0457d11f16ee5
+      Hash: 32e9cc0abc2269337100ad1bd7cdcc5e
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerUI
@@ -648,7 +639,7 @@ ScriptsOnlyBuild:
     className: SmoothSyncMovement
   - hash:
       serializedVersion: 2
-      Hash: ce1309b1be890ef707ae863c0f5086ad
+      Hash: 838b63470f12bd3b4dc97516525a356a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerManager
@@ -804,7 +795,7 @@ ScriptsOnlyBuild:
     className: TMP_PhoneNumberValidator
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 803ceb6d7446c8dd82c1cca965b790f6
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: SetCameraPosition
@@ -1104,7 +1095,7 @@ ScriptsOnlyBuild:
     className: AutoSyncSceneToggle
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+      Hash: 4b73f6c7f79e6842b6e2f12bf6db8210
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ArrowController
@@ -1290,7 +1281,7 @@ ScriptsOnlyBuild:
     className: PlayerDetailsController
   - hash:
       serializedVersion: 2
-      Hash: 4059a0249c940b787926c71cf5e8b744
+      Hash: d1f07c9e64b7817e6271f80bb03de25f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager

@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerUI : MonoBehaviour
+public class PlayerUI : MonoBehaviourPun
 {
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private Vector3 screenOffset = new Vector3(0f,30f,0f);
-    
+    [SerializeField] private Camera camera;
     private PlayerManager target;
 
     private float characterControllerHeight = 0f;
@@ -29,7 +30,7 @@ public class PlayerUI : MonoBehaviour
         target = _target;
         if (playerNameText != null)
         {
-            playerNameText.text = target.photonView.Owner.NickName;
+            playerNameText.text = target.myPhotonView.Owner.NickName;
         }
     }
 
@@ -39,8 +40,10 @@ public class PlayerUI : MonoBehaviour
         canvasGroup = this.GetComponent<CanvasGroup>();
     }
 
+
     private void Update()
     {
+
         if (playerHealthSlider != null)
         {
             playerHealthSlider.value = target.health;
@@ -51,6 +54,7 @@ public class PlayerUI : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+
     }
 
     private void LateUpdate()
@@ -64,7 +68,7 @@ public class PlayerUI : MonoBehaviour
         {
             targetPosition = targetTransform.position;
             targetPosition.y += characterControllerHeight;
-            this.transform.position = Camera.main.WorldToScreenPoint(targetPosition) + screenOffset;
+            this.transform.position = camera.WorldToScreenPoint(targetPosition) + screenOffset;
         }
     }
 }

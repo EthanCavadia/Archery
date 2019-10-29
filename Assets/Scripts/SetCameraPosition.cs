@@ -5,28 +5,28 @@ using UnityEngine;
 
 public class SetCameraPosition : MonoBehaviourPun
 {
+    [SerializeField] public PhotonView myPhotonView;
 
-    private float sensVertical;
-    private float maxRotation = 45.0f;
-    private float minRotation = -45.0f;
-    private float rotation;
-    // Start is called before the first frame update
+    [SerializeField] public  Camera camera;
+    private Vector3 originalCameraPosition;
+    private CharacterController characterController;
+    
     void Start()
     {
-        if (!photonView.IsMine)
-        { 
-            return;
+        //camera = Camera.main;
+        myPhotonView = GetComponent<PhotonView>();
+        if (!myPhotonView.IsMine)
+        {
+            Destroy(camera);
         }
-        Camera.main.transform.position = transform.position;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (photonView.IsMine)
+        if (myPhotonView.IsMine)
         {
-            Camera.main.transform.position = transform.position;
-            Camera.main.transform.rotation = transform.rotation;
+            camera.transform.position = transform.position;
+            camera.transform.rotation = transform.rotation;
         }
     }
 }
