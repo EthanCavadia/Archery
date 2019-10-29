@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
-public class PlayerAnimatorController : MonoBehaviour
+public class PlayerAnimatorController : MonoBehaviourPun
 {
     private Animator animator;
     
@@ -23,7 +24,12 @@ public class PlayerAnimatorController : MonoBehaviour
         {
             return;
         }
-
+        
+        if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+        {
+            return;
+        }
+        
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
