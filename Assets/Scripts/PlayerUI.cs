@@ -12,8 +12,8 @@ public class PlayerUI : MonoBehaviourPun
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private Vector3 screenOffset = new Vector3(0f,30f,0f);
     [SerializeField] private Camera camera;
+    
     private PlayerManager target;
-
     private float characterControllerHeight = 0f;
     private Transform targetTransform;
     private Renderer targetRender;
@@ -40,7 +40,6 @@ public class PlayerUI : MonoBehaviourPun
         canvasGroup = this.GetComponent<CanvasGroup>();
     }
 
-
     private void Update()
     {
 
@@ -54,7 +53,6 @@ public class PlayerUI : MonoBehaviourPun
             Destroy(this.gameObject);
             return;
         }
-
     }
 
     private void LateUpdate()
