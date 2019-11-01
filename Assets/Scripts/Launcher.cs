@@ -126,11 +126,5 @@ public class Launcher : MonoBehaviourPunCallbacks
             PhotonNetwork.ConnectUsingSettings();
         }
     }
-
-    [PunRPC]
-    public void GeName(string name)
-    {
-        
-    }
     
 }

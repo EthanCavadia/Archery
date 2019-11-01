@@ -11,14 +11,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] public GameObject PlayerUiPrefab;
     [SerializeField] public Camera camera;
-    [SerializeField] private TMP_Text playerNameTag;
     
     public float health = 1f;
     public static GameObject localPlayerInstance;
-        
-    private Vector3 originalCameraPosition;
+    
     private CharacterController characterController;
-    private Rigidbody rigidbody;
+    
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -58,9 +56,11 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             return;
         }
 
-        GameObject _uiGo = Instantiate(PlayerUiPrefab);
-        _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-
+        if (PlayerUiPrefab != null)
+        {
+            GameObject _uiGo = Instantiate(PlayerUiPrefab);
+            _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+        }
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 

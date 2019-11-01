@@ -11,14 +11,14 @@ public class PlayerUI : MonoBehaviourPun
     [SerializeField] private TMP_Text playerNameText;
     [SerializeField] private Slider playerHealthSlider;
     [SerializeField] private Vector3 screenOffset = new Vector3(0f,30f,0f);
-    [SerializeField] private Camera camera;
     
-    private PlayerManager target;
     private float characterControllerHeight;
+    private PlayerManager target;
     private Transform targetTransform;
     private Renderer targetRender;
     private CanvasGroup canvasGroup;
     private Vector3 targetPosition;
+    
     public void SetTarget(PlayerManager _target)
     {
         if (_target == null)
@@ -34,7 +34,6 @@ public class PlayerUI : MonoBehaviourPun
         }
         targetTransform = target.GetComponent<Transform>();
         targetRender = target.GetComponent<Renderer>();
-
         UnityEngine.CharacterController characterController = _target.GetComponent<UnityEngine.CharacterController>();
 
         if (characterController != null)
@@ -48,8 +47,6 @@ public class PlayerUI : MonoBehaviourPun
         canvasGroup = GetComponent<CanvasGroup>();
         transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false);
     }
-
-    
 
     private void Update()
     {
@@ -67,17 +64,16 @@ public class PlayerUI : MonoBehaviourPun
 
     private void LateUpdate()
     {
-        
         if (targetTransform != null)
         {
-            canvasGroup.alpha = targetRender.isVisible ? 1f : 0f;
+            //canvasGroup.alpha = targetRender.isVisible ? 1f : 0f;
         }
 
-        if (targetTransform != null)
-        {
+        //if (targetTransform != null)
+        //{
             targetPosition = targetTransform.position;
             targetPosition.y += characterControllerHeight;
-            transform.position = camera.WorldToScreenPoint(targetPosition) + screenOffset;
-        }
+            this.transform.position = target.camera.WorldToScreenPoint(targetPosition) + screenOffset;
+        //}
     }
 }
