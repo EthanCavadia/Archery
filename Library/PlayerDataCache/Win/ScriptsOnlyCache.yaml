@@ -4,12 +4,12 @@ ScriptsOnlyBuild:
     - ArrowController
     - CameraController
     - CharacterController
-    - Com.ECavadia.Archery.PlayerNameInputField
     - GameManager
     - Launcher
     - PlayerAnimatorController
     - PlayerAnimatorManager
     - PlayerManager
+    - PlayerNameInputField
     - PlayerUI
     - ShootManager
     PhotonUnityNetworking.Demos.dll:
@@ -273,8 +273,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 10720}
     - Class: 114
       Script: {instanceID: 10742}
-    - Class: 114
-      Script: {instanceID: 10858}
     - Class: 114
       Script: {instanceID: 10940}
     - Class: 114
@@ -639,7 +637,7 @@ ScriptsOnlyBuild:
     className: SmoothSyncMovement
   - hash:
       serializedVersion: 2
-      Hash: 838b63470f12bd3b4dc97516525a356a
+      Hash: f93fa520532c01df8383ac8fe66cd00d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerManager
@@ -793,12 +791,6 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: TMPro
     className: TMP_PhoneNumberValidator
-  - hash:
-      serializedVersion: 2
-      Hash: 803ceb6d7446c8dd82c1cca965b790f6
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: SetCameraPosition
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1247,7 +1239,7 @@ ScriptsOnlyBuild:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
-    namespaceName: Com.ECavadia.Archery
+    namespaceName: 
     className: PlayerNameInputField
   - hash:
       serializedVersion: 2

@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (PlayerManager.localPlayerInstance == null)
         {
-            PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
+            PhotonNetwork.Instantiate(playerPrefab.name, new Vector3(0f, 0.5f, 0f), Quaternion.identity);
         }
     }
 
@@ -29,9 +29,7 @@ public class GameManager : MonoBehaviourPunCallbacks
 
         if (PhotonNetwork.IsMasterClient)
         {
-            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}",
-                PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-
+            Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
 
             LoadArena();
         }
@@ -51,6 +49,7 @@ public class GameManager : MonoBehaviourPunCallbacks
     {
         SceneManager.LoadScene(0);
     }
+    
     public void LeaveRoom()
     {
         PhotonNetwork.LeaveRoom();

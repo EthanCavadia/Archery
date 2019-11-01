@@ -20,7 +20,7 @@ public class ShootManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            this.shotArrow = (bool) stream.ReceiveNext();
+            shotArrow = (bool) stream.ReceiveNext();
         }
     }
 
@@ -43,7 +43,7 @@ public class ShootManager : MonoBehaviourPunCallbacks, IPunObservable
             {
                 shotArrow = true;
 
-                GameObject go = PhotonNetwork.Instantiate(this.arrowPrefab.name, arrowSpawn.position, Quaternion.identity);
+                GameObject go = PhotonNetwork.Instantiate(arrowPrefab.name, arrowSpawn.position, Quaternion.identity);
                 Rigidbody rb = go.GetComponent<Rigidbody>();
 
                 rb.velocity = camera.transform.forward * shootForce;

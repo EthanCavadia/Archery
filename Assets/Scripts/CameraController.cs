@@ -21,15 +21,14 @@ public class CameraController : MonoBehaviourPun
 
     private float rotationX = 0;
 
-    private void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!photonView.IsMine)
+        {
+            return;
+        }
         if (axes == RotationAxis.MouseX)
         {
             transform.Rotate(0, Input.GetAxis("Mouse X") * sensHorizontal, 0);

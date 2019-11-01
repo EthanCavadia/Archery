@@ -57,9 +57,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\PhotonPlayer\Editor\PlayerNumberingInspector.cs" />
-    <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\PhotonPlayer\Editor\PunTeamsInspector.cs" />
-    <None Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\PhotonPlayer\Editor\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.asmdef" />
+    <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\Room\PhotonPlayer\Editor\PlayerNumberingInspector.cs" />
+    <Compile Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\Room\PhotonPlayer\Editor\PunTeamsInspector.cs" />
+    <None Include="Assets\Photon\PhotonUnityNetworking\UtilityScripts\Room\PhotonPlayer\Editor\PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.asmdef" />
     <Reference Include="UnityEditor.UI">
       <HintPath>D:/Developemment/Archery/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>

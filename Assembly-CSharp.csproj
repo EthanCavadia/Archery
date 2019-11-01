@@ -78,7 +78,6 @@
     <Compile Include="Assets\Scripts\PlayerManager.cs" />
     <Compile Include="Assets\Scripts\PlayerNameInputField.cs" />
     <Compile Include="Assets\Scripts\PlayerUI.cs" />
-    <Compile Include="Assets\Scripts\SetCameraPosition.cs" />
     <Compile Include="Assets\Scripts\ShootManager.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -696,10 +695,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
-      <Project>{765DD031-8B23-EEB9-970F-F89FF338C722}</Project>
-      <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
-    </ProjectReference>
     <ProjectReference Include="PunDemos.DemoHubEditor.csproj">
       <Project>{B3E90ED9-06B2-DD4D-7A13-2B33EBAD9A1F}</Project>
       <Name>PunDemos.DemoHubEditor</Name>
@@ -739,6 +734,10 @@
     <ProjectReference Include="PhotonUnityNetworking.Editor.csproj">
       <Project>{B054D791-1B82-E316-73A8-806A65A70259}</Project>
       <Name>PhotonUnityNetworking.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="PhotonUnityNetworking.Utilities.PhotonPlayer.Editor.csproj">
+      <Project>{765DD031-8B23-EEB9-970F-F89FF338C722}</Project>
+      <Name>PhotonUnityNetworking.Utilities.PhotonPlayer.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

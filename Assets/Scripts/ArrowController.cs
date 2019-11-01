@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using UnityEngine;
 
-public class ArrowController : MonoBehaviourPun
+public class ArrowController : MonoBehaviourPunCallbacks , IPunObservable
 {
     [SerializeField] private PhotonView myPhotonView;
     private Rigidbody rigidbody;
@@ -11,17 +11,35 @@ public class ArrowController : MonoBehaviourPun
     private float lifeTime = 2.0f;
     private float timer;
     private bool hit = false;
-    // Start is called before the first frame update
+    private float arrowDamage = 0.5f;
+    
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(rigidbody.position);
+            stream.SendNext(rigidbody.velocity);
+        }
+        else
+        {
+            rigidbody.position = (Vector3) stream.ReceiveNext();
+            rigidbody.velocity = (Vector3) stream.ReceiveNext();
+
+            float lag = Mathf.Abs((float) (PhotonNetwork.Time - info.SentServerTime));
+
+            rigidbody.position += rigidbody.velocity * lag;
+        }
+    }
+    
     void Start()
     {
         rigidbody = GetComponent<Rigidbody>();
         myPhotonView = GetComponent<PhotonView>();
         transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
     }
-
-    // Update is called once per frame
+    
     void Update()
-    {
+    {        
         if (!hit)
         {
             transform.rotation = Quaternion.LookRotation(rigidbody.velocity);
@@ -49,7 +67,7 @@ public class ArrowController : MonoBehaviourPun
 
         if (collision.collider.CompareTag("Player"))
         {
-            collision.transform.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, 0.5f);
+            collision.transform.GetComponent<PhotonView>().RPC("TakeDamage", RpcTarget.All, arrowDamage);
             
             Debug.Log("Hit");
         }

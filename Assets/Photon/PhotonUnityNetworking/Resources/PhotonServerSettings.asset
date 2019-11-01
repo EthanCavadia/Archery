@@ -35,5 +35,7 @@ MonoBehaviour:
   - Fire
   - RespawnSpaceship
   - TakeDamage
+  - GeName
+  - GetName
   DisableAutoOpenWizard: 1
   ShowSettings: 1

@@ -14,12 +14,11 @@ public class PlayerUI : MonoBehaviourPun
     [SerializeField] private Camera camera;
     
     private PlayerManager target;
-    private float characterControllerHeight = 0f;
+    private float characterControllerHeight;
     private Transform targetTransform;
     private Renderer targetRender;
     private CanvasGroup canvasGroup;
     private Vector3 targetPosition;
-    
     public void SetTarget(PlayerManager _target)
     {
         if (_target == null)
@@ -28,45 +27,57 @@ public class PlayerUI : MonoBehaviourPun
         }
         
         target = _target;
+        
         if (playerNameText != null)
         {
-            playerNameText.text = target.myPhotonView.Owner.NickName;
+            playerNameText.text = target.photonView.Owner.NickName;
+        }
+        targetTransform = target.GetComponent<Transform>();
+        targetRender = target.GetComponent<Renderer>();
+
+        UnityEngine.CharacterController characterController = _target.GetComponent<UnityEngine.CharacterController>();
+
+        if (characterController != null)
+        {
+            characterControllerHeight = characterController.height;
         }
     }
 
     private void Awake()
     {
-        this.transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false);
-        canvasGroup = this.GetComponent<CanvasGroup>();
+        canvasGroup = GetComponent<CanvasGroup>();
+        transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(), false);
     }
+
+    
 
     private void Update()
     {
+        if (target == null)
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         if (playerHealthSlider != null)
         {
             playerHealthSlider.value = target.health;
         }
-
-        if (target == null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
     }
 
     private void LateUpdate()
     {
+        
         if (targetTransform != null)
         {
-            this.canvasGroup.alpha = targetRender.isVisible ? 1f : 0f;
+            canvasGroup.alpha = targetRender.isVisible ? 1f : 0f;
         }
 
         if (targetTransform != null)
         {
             targetPosition = targetTransform.position;
             targetPosition.y += characterControllerHeight;
-            this.transform.position = camera.WorldToScreenPoint(targetPosition) + screenOffset;
+            transform.position = camera.WorldToScreenPoint(targetPosition) + screenOffset;
         }
     }
 }

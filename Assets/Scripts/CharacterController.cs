@@ -37,6 +37,5 @@ public class CharacterController : MonoBehaviourPun
         movement *= Time.deltaTime;
         movement = transform.TransformDirection(movement);
         
-
     }
 }

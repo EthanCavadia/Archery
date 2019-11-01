@@ -3,21 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Pun.Demo.PunBasics;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     [SerializeField] public GameObject PlayerUiPrefab;
-    [SerializeField] public PhotonView myPhotonView;
-    [SerializeField] public  Camera camera;
+    [SerializeField] public Camera camera;
+    [SerializeField] private TMP_Text playerNameTag;
     
     public float health = 1f;
     public static GameObject localPlayerInstance;
         
     private Vector3 originalCameraPosition;
     private CharacterController characterController;
-    
+    private Rigidbody rigidbody;
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -26,11 +27,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
         }
         else
         {
-            this.health = (float) stream.ReceiveNext();
+            health = (float) stream.ReceiveNext();
+            
         }
     }
 
-    private void OnDisable()
+    public override void OnDisable()
     {
         base.OnDisable();
         SceneManager.sceneLoaded -= OnSceneLoaded;
@@ -38,30 +40,30 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Awake()
     {
-        if (myPhotonView.IsMine)
+        if (photonView.IsMine)
         {
-            PlayerManager.localPlayerInstance = this.gameObject;
+            localPlayerInstance = gameObject;
         }
 
-        DontDestroyOnLoad(this.gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
-    {       
-        myPhotonView = GetComponent<PhotonView>();
+    {
         camera = GetComponentInChildren<Camera>();
-        
-        if (!myPhotonView.IsMine)
+
+        if (!photonView.IsMine)
         {
             camera.enabled = false;
             return;
         }
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
         GameObject _uiGo = Instantiate(PlayerUiPrefab);
         _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
+
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
-    
+
     [PunRPC]
     public void TakeDamage(float dmg)
     {
@@ -70,7 +72,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void Update()
     {
-        if (myPhotonView.IsMine)
+        if (photonView.IsMine)
         {
             if (health <= 0f)
             {
@@ -81,12 +83,12 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode loadMode)
     {
-        this.CalledOnLevelWasLoaded(scene.buildIndex);
+        CalledOnLevelWasLoaded(scene.buildIndex);
     }
 
     void OnLevelWasLoaded(int level)
     {
-        this.CalledOnLevelWasLoaded(level);
+        CalledOnLevelWasLoaded(level);
     }
 
     void CalledOnLevelWasLoaded(int level)
@@ -96,7 +98,7 @@ public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
             transform.position = new Vector3(0f,5f,0f);
         }
 
-        GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+        GameObject _uiGo = Instantiate(PlayerUiPrefab);
         _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
     }
 }
